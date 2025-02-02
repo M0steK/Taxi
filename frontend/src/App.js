@@ -1,22 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react';
+import { fetchBackendMessage } from './api';
 
 function App() {
+  const [message, setMessage] = useState('');
+
+  useEffect(() => {
+    // Pobranie wiadomości z backendu przy pierwszym renderowaniu komponentu
+    const getMessage = async () => {
+      const data = await fetchBackendMessage();
+      if (data) {
+        setMessage(data);
+      }
+    };
+    getMessage();
+  }, []);
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <h1>Wiadomość z backendu:</h1>
+        <p>{message || 'Ładowanie...'}</p>
       </header>
     </div>
   );
