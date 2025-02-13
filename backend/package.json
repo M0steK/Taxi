@@ -24,6 +24,8 @@
   "homepage": "https://github.com/M0steK/Taxi#readme",
   "description": "",
   "dependencies": {
-    "express": "^4.21.2"
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "mongoose": "^8.10.0"
   }
 }
